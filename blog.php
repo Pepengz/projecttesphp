@@ -117,7 +117,6 @@ $static_links = [
                         <a href="javascript:void(0)" class="comment-button" onclick="toggleCommentForm('dynamic<?= $row['id'] ?>')">Beri Komentar</a>
                     </div>
 
-                    <!-- Inline comment form -->
                     <div class="comment-form" id="comment-form-dynamic<?= $row['id'] ?>">
                         <h3>Beri Komentar</h3>
                         <form method="post">
@@ -172,7 +171,6 @@ $static_links = [
                     <a href="javascript:void(0)" class="comment-button" onclick="toggleCommentForm('static<?= $i+1 ?>')">Beri Komentar</a>
                 </div>
 
-                <!-- Inline comment form for static articles -->
                 <div class="comment-form" id="comment-form-static<?= $i+1 ?>">
                     <h3>Beri Komentar</h3>
                     <form method="post">
@@ -210,7 +208,6 @@ $static_links = [
         function toggleCommentForm(id) {
             const formElement = document.getElementById('comment-form-' + id);
             
-            // Close all other comment forms
             const allForms = document.querySelectorAll('.comment-form');
             allForms.forEach(form => {
                 if (form !== formElement) {
@@ -218,14 +215,12 @@ $static_links = [
                 }
             });
             
-            // Toggle the current form
+
             formElement.classList.toggle('active');
             
-            // Auto-focus on the name field if form is open
             if (formElement.classList.contains('active')) {
                 document.getElementById('name-' + id).focus();
-                
-                // Scroll to the form
+
                 setTimeout(() => {
                     formElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 100);
