@@ -2,5 +2,5 @@
   "editor.formatOnSave": true,
   "php.validate.enable": true,
   "php.suggest.basic": false,
-  "liveServer.settings.port": 5506
+  "liveServer.settings.port": 5507
 }

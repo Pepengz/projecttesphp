@@ -10,12 +10,10 @@ $articles = mysqli_query($conn, "SELECT * FROM artikel ORDER BY tanggal_dibuat D
 $all_articles = mysqli_query($conn, "SELECT id, judul FROM artikel ORDER BY tanggal_dibuat DESC");
 $total_articles = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM artikel"));
 $total_pages = ceil($total_articles / $limit);
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_submit'])) {
     $article_id = $_POST['article_id'];
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $comment = mysqli_real_escape_string($conn, $_POST['comment']);
-    
     if (strpos($article_id, 'static') !== false) {
         if (!isset($_SESSION['static_comments'])) $_SESSION['static_comments'] = [];
         $_SESSION['static_comments'][] = [
@@ -80,7 +78,6 @@ $static_links = [
         </nav>
     </div>
     <hr class="header-divider">
-
     <div class="blog-container">
         <?php if (mysqli_num_rows($articles) > 0): ?>
             <?php while ($row = mysqli_fetch_assoc($articles)): ?>
@@ -110,13 +107,11 @@ $static_links = [
                             <p style="color:#777;font-style:italic;">Belum ada komentar. Jadilah yang pertama berkomentar!</p>
                         <?php endif; ?>
                     </div>
-
                     <div style="margin-top:10px;">
                         <a href="edit_artikel.php?id=<?= $row['id'] ?>">Edit</a> |
                         <a href="delete_artikel.php?id=<?= $row['id'] ?>" onclick="return confirm('Hapus artikel ini?')">Hapus</a> |
                         <a href="javascript:void(0)" class="comment-button" onclick="toggleCommentForm('dynamic<?= $row['id'] ?>')">Beri Komentar</a>
                     </div>
-
                     <div class="comment-form" id="comment-form-dynamic<?= $row['id'] ?>">
                         <h3>Beri Komentar</h3>
                         <form method="post">
@@ -207,7 +202,6 @@ $static_links = [
     <script>
         function toggleCommentForm(id) {
             const formElement = document.getElementById('comment-form-' + id);
-            
             const allForms = document.querySelectorAll('.comment-form');
             allForms.forEach(form => {
                 if (form !== formElement) {
@@ -215,12 +209,9 @@ $static_links = [
                 }
             });
             
-
             formElement.classList.toggle('active');
-            
             if (formElement.classList.contains('active')) {
                 document.getElementById('name-' + id).focus();
-
                 setTimeout(() => {
                     formElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 100);
