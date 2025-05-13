@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $query = "INSERT INTO artikel (judul, konten, gambar_url, konten_url, kategori, tanggal_dibuat) 
-            VALUES ('$judul', '$konten', '$gambar_url', '$konten_url', '$kategori', '$tanggal_publikasi')";
+              VALUES ('$judul', '$konten', '$gambar_url', '$konten_url', '$kategori', '$tanggal_publikasi')";
     if (mysqli_query($conn, $query)) {
         $pesan = '<div style="color:green;margin-bottom:20px;">Artikel berhasil ditambahkan!</div>';
         header("refresh:2;url=blog.php");
@@ -112,23 +112,20 @@ function ekstrakTanggalPublikasi($url)
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            position: relative;
-            overflow: hidden;
+            transition: all .2s ease;
+            font-weight: 600
         }
 
         button:hover {
-            background: #1a56b3;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: #3366cc;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .2)
         }
 
         button:active {
-            background: #0a3270 !important;
-            transform: translateY(0) !important;
-            border-color: white !important;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+            background: #002266 !important;
+            transform: scale(.95) !important;
+            border-color: #fff !important
         }
 
         small {
@@ -163,28 +160,6 @@ function ekstrakTanggalPublikasi($url)
 
         .tab-content.active {
             display: block
-        }
-
-        /* Garis putih pada navigasi */
-        nav a {
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background-color: white;
-            transition: width 0.3s ease, left 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-            left: 0;
         }
     </style>
 </head>
@@ -246,5 +221,4 @@ function ekstrakTanggalPublikasi($url)
         }
     </script>
 </body>
-
 </html>
