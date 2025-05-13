@@ -43,6 +43,7 @@ $static_links = ["https://eduparx.id/blog/insight/artificial-intelligence/predik
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -62,9 +63,11 @@ $static_links = ["https://eduparx.id/blog/insight/artificial-intelligence/predik
             display: inline-block;
             text-decoration: none
         }
+
         .comment-button:hover {
             background: #357ae8
         }
+
         .comment-form {
             background: #f9f9f9;
             padding: 20px;
@@ -73,16 +76,19 @@ $static_links = ["https://eduparx.id/blog/insight/artificial-intelligence/predik
             box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
             display: none
         }
+
         .comment-form.active {
             display: block;
             animation: slideDown .3s ease
         }
+
         .action-buttons {
-            display: flex;
-            justify-content: center;
-            margin: 30px auto;
-            max-width: 800px
+            position: absolute;
+            top: 150px;
+            right: 30px;
+            z-index: 10;
         }
+
         @keyframes slideDown {
             from {
                 opacity: 0;
@@ -94,53 +100,52 @@ $static_links = ["https://eduparx.id/blog/insight/artificial-intelligence/predik
                 transform: translateY(0)
             }
         }
+
         .add-article-btn {
-            background: #0e4496;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
             display: inline-block;
+            padding: 10px 15px;
+            background-color: #0e4496;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             font-weight: 600;
-            transition: all 0.25s ease-in-out !important;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(14, 68, 150, 0.3);
-            position: relative;
-            overflow: hidden;
-            border: none;
-            outline: none;
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
         }
-        .add-article-btn::after {
+
+        .add-article-btn:hover {
+            background-color: #1a56b3;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .add-article-btn:active {
+            background-color: #0a3270;
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border-color: white;
+        }
+
+        nav a {
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: white;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        nav a:hover::after {
             width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0);
-            transition: all 0.3s ease;
-        }
-        .add-article-btn:hover {
-            background: #0a3370;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(14, 68, 150, 0.4);
-        }
-        .add-article-btn:hover::after {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .add-article-btn:active {
-            transform: translateY(2px) scale(0.98);
-            box-shadow: 0 2px 6px rgba(14, 68, 150, 0.3);
-            background: #072a5e;
-        }
-        .add-article-btn:active::after {
-            background: rgba(0, 0, 0, 0.1);
-        }
-        .action-buttons a.add-article-btn:hover,
-        .action-buttons a.add-article-btn:active,
-        .action-buttons a.add-article-btn:focus {
-            color: #fff !important;
-            text-decoration: none !important;
+            left: 0;
         }
     </style>
 </head>
@@ -154,6 +159,7 @@ $static_links = ["https://eduparx.id/blog/insight/artificial-intelligence/predik
         <nav><a href="index.html">Home</a><a href="gallery.html">Gallery</a><a href="blog.php">Blog</a><a href="contact.html">Contact</a></nav>
     </div>
     <hr class="header-divider">
+    <div class="action-buttons"><a href="tambah_artikel.php" class="add-article-btn">+ Tambah Artikel Baru</a></div>
     <div class="blog-container">
         <?php if (mysqli_num_rows($articles) > 0): while ($row = mysqli_fetch_assoc($articles)): ?>
                 <article id="article<?= $row['id'] ?>">
@@ -252,7 +258,7 @@ $static_links = ["https://eduparx.id/blog/insight/artificial-intelligence/predik
             <?php endfor; ?>
         </div>
     <?php endif; ?>
-    <div class="action-buttons"><a href="tambah_artikel.php" class="add-article-btn">+ Tambah Artikel Baru</a></div>
+
     <script>
         function toggleCommentForm(id) {
             const formElement = document.getElementById('comment-form-' + id);
@@ -273,4 +279,5 @@ $static_links = ["https://eduparx.id/blog/insight/artificial-intelligence/predik
         }
     </script>
 </body>
+
 </html>

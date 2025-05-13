@@ -108,10 +108,27 @@ function ekstrakTanggalPublikasi($url)
         button {
             background: #0e4496;
             color: white;
-            border: none;
+            border: 2px solid transparent;
             padding: 10px 20px;
             border-radius: 5px;
-            cursor: pointer
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background: #1a56b3;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            background: #0a3270 !important;
+            transform: translateY(0) !important;
+            border-color: white !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
         }
 
         small {
@@ -146,6 +163,28 @@ function ekstrakTanggalPublikasi($url)
 
         .tab-content.active {
             display: block
+        }
+
+        /* Garis putih pada navigasi */
+        nav a {
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: white;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
         }
     </style>
 </head>
@@ -207,4 +246,5 @@ function ekstrakTanggalPublikasi($url)
         }
     </script>
 </body>
+
 </html>
